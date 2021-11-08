@@ -32,7 +32,7 @@ def train(data_train, data_loader_train, model, loss, optimizer, num_epochs, lr,
         print('[%d,%d] loss:%.03f' % (epoch + 1, num_epochs, sum_loss / len(data_loader_train)))
         print('        correct:%.03f%%' % (100 * train_correct / len(data_train)))
 
-    torch.save(model.state_dict(), './models/mnist_classifier' + model.name() + '.pth')
+    torch.save(model.state_dict(), './models/mnist_classifier' + model.name() + str(loss)[:3] + str(optimizer)[:3] + '.pth')
     print("Trained model saved in mnist_classifier.pth")
 
     return model, avg_batch_loss, avg_batch_acc
