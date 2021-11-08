@@ -193,7 +193,8 @@ print('\n')
 
 # i = 0
 
-for model in [Model1(), Model2(), Model3(), Model4(), Model5(), Model6(), Model7()]:
+for model in [Model7()]:
+# for model in [Model1(), Model2(), Model3(), Model4(), Model5(), Model6(), Model7()]:
     for loss in [nn.CrossEntropyLoss()]:
         for optimizer in [torch.optim.Adam(model.parameters(), lr=lr),
                           torch.optim.SGD(model.parameters(), lr=lr)]:
