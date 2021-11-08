@@ -20,7 +20,7 @@ def plot_loss_and_acc(loss_and_acc_dict):
 	plt.legend()
 	plt.xticks(range(0, maxEpoch + 1, 2))
 	plt.axis([0, maxEpoch, minLoss, maxLoss])
-	plt.savefig("./" + list(loss_and_acc_dict.keys())[0] + 'Loss.png')
+	plt.savefig("./curves/" + list(loss_and_acc_dict.keys())[0] + 'Loss.png')
 	plt.show()
 
 
@@ -37,7 +37,7 @@ def plot_loss_and_acc(loss_and_acc_dict):
 	plt.xticks(range(0, maxEpoch + 1, 2))
 	plt.axis([0, maxEpoch, minAcc, maxAcc])
 	plt.legend()
-	plt.savefig("./" + list(loss_and_acc_dict.keys())[0] + 'Acc.png')
+	plt.savefig("./curves/" + list(loss_and_acc_dict.keys())[0] + 'Acc.png')
 	plt.show()
 
 
