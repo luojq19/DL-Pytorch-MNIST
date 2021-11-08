@@ -22,6 +22,6 @@ def test(model, data_loader_test, device):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-    print('Accuracy of the network on the test images: %d %%' % (100 * correct / total))
+    print('Accuracy of the network on the test images: %.03f %%' % (100 * correct / total))
 
     return correct / total

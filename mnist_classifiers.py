@@ -210,7 +210,7 @@ for model in [Model1(), Model2(), Model3(), Model4(), Model5(), Model6(), Model7
             plot_loss_and_acc({model.name() + "+" + str(optimizer)[:3] + "+" + str(loss)[:3]: [batch_loss, batch_acc]})
 
             # test
-            accuracy = test(model, data_loader_test)
+            accuracy = test(model, data_loader_test, device)
             # i += 1
             print('#' * 40)
             print('\n')
