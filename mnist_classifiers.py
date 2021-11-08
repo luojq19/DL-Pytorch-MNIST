@@ -137,6 +137,29 @@ class Model6(nn.Module):  # ConvNet with very few channels
     def name(self):
         return "Model6"
 
+class Model7(nn.Module):  # ConvNet with very few channels
+    def __init__(self):
+        super(Model7, self).__init__()
+        self.conv = nn.Sequential(nn.Conv2d(1, 64, kernel_size=3, stride=1, padding=1),
+                                  nn.ReLU(),
+                                  nn.Conv2d(3, 128, kernel_size=3, stride=1, padding=1),
+                                  nn.ReLU(),
+                                  nn.MaxPool2d(stride=2, kernel_size=2),
+                                  nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
+                                  nn.ReLU(),
+                                  nn.MaxPool2d(stride=1, kernel_size=2))
+
+        self.fc = nn.Sequential(nn.Linear(13 * 13 * 256, 128),
+                                nn.ReLU(),
+                                nn.Dropout(0.5),
+                                nn.Linear(128, 10))
+
+    def forward(self, x):
+        return self.fc(self.conv(x).view(-1, 13 * 13 * 256))
+
+    def name(self):
+        return "Model7"
+
 lr = 0.001
 num_epochs = 10
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -170,7 +193,7 @@ print('\n')
 
 # i = 0
 
-for model in [Model1(), Model2(), Model3(), Model4(), Model5()]:
+for model in [Model1(), Model2(), Model3(), Model4(), Model5(), Model6(), Model7()]:
     for loss in [nn.CrossEntropyLoss(), nn.MSELoss()]:
         for optimizer in [torch.optim.Adam(model.parameters(), lr=lr),
                           torch.optim.SGD(model.parameters(), lr=lr)]:
