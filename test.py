@@ -6,7 +6,7 @@
 
 import torch
 
-def test(model, data_loader_test):
+def test(model, data_loader_test, device):
     model.eval()
     correct = 0
     total = 0
@@ -14,6 +14,7 @@ def test(model, data_loader_test):
     with torch.no_grad():
         for data in data_loader_test:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             # calculate outputs by running images through the network
             outputs = model(images)
             # the class with the highest energy is what we choose as prediction
